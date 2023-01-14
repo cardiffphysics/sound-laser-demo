@@ -1,0 +1,476 @@
+<style text="text/css">
+	.freqChangeButton{
+		height:70px;
+		width:70px;
+		border: 2px solid #3799BE;
+		border-radius: 4px;
+		background-color: #3799BE;
+		color: white;
+		font-weight: bold;
+		-webkit-transition-duration: 0.4s; /* Safari */
+		transition-duration: 0.4s;	
+	}
+	
+	.freqChangeButton:hover {
+		background-color: #ffffff; /* Green */
+		color: #3799BE;
+	}
+	
+	.noteButton{
+		height:50px;
+		width:50px;
+		border: 2px solid #3799BE;
+		border-radius: 4px;
+		background-color: #3799BE;
+		color: white;
+		font-weight: bold;
+		-webkit-transition-duration: 0.4s; /* Safari */
+		transition-duration: 0.4s;	
+	}
+
+	.noteButton:hover {
+		background-color: #ffffff; /* Green */
+		color: #3799BE;
+	}
+	
+	
+	.playButton{
+		height:50px;
+		width:150px;
+		font-size: 20px;
+		border: 2px solid #3799BE;
+		border-radius: 4px;
+		background-color: #3799BE;
+		color: white;
+		font-weight: bold;
+		-webkit-transition-duration: 0.4s; /* Safari */
+		transition-duration: 0.4s;	
+	}
+	
+	.playButton:hover {
+		background-color: #ffffff; /* Green */
+		color: #3799BE;
+	}	
+	
+	.octaveButton{
+		height:50px;
+		width:100px;
+		border: 2px solid #3799BE;
+		border-radius: 4px;
+		background-color: #3799BE;
+		color: white;
+		font-weight: bold;
+		-webkit-transition-duration: 0.4s; /* Safari */
+		transition-duration: 0.4s;	
+	}
+
+	.octaveButton:hover {
+		background-color: #ffffff; /* Green */
+		color: #3799BE;
+	}
+	
+	body {
+		font-family:Tahoma, Calibri, Verdana, Geneva, sans-serif;
+		font-size:medium;
+		text-align: center;
+	}
+	
+	table.center {
+		text-align: center;
+		margin-left: auto;
+		margin-right: auto;
+		border-collapse: collapse;
+	}
+
+	th, td {
+		padding: 20px;
+	}
+</style>
+
+<body>
+    <div id="text">
+        <p/>
+			<table class="center" border="3">
+				<tr>		
+					<td>
+						<h1>Frequency 1: <span id="frequency">200.00</span>Hz</h1>						
+						<p>Set Note Frequency (Octave: <b><span id="octaveid">3</span></b>) </p> 						
+						<p> 
+							<button class="noteButton" onclick = "noteFreq((2**octave)*16.35)" >C</button>
+							<button class="noteButton" onclick = "noteFreq((2**octave)*17.32)" >C#/Db</button>
+							<button class="noteButton" onclick = "noteFreq((2**octave)*18.35)" >D</button>
+							<button class="noteButton" onclick = "noteFreq((2**octave)*19.45)" >D#/Eb</button>
+							<button class="noteButton" onclick = "noteFreq((2**octave)*20.60)" >E</button>
+							<button class="noteButton" onclick = "noteFreq((2**octave)*21.83)" >F</button>
+							<button class="noteButton" onclick = "noteFreq((2**octave)*23.12)" >F#/Gb</button>
+							<button class="noteButton" onclick = "noteFreq((2**octave)*24.50)" >G</button>
+							<button class="noteButton" onclick = "noteFreq((2**octave)*25.96)" >G#/Ab</button>
+							<button class="noteButton" onclick = "noteFreq((2**octave)*27.50)" >A</button>
+							<button class="noteButton" onclick = "noteFreq((2**octave)*29.14)" >A#/Bb</button>
+							<button class="noteButton" onclick = "noteFreq((2**octave)*30.87)" >B</button>
+						</p>						
+						<p>
+							<button class="octaveButton" onclick = "changeOctave(0)" >Octave 0<br>Min:16.35Hz<br>Max:30.87Hz</button>
+							<button class="octaveButton" onclick = "changeOctave(1)" >Octave 1<br>Min:32.70Hz<br>Max:61.74Hz</button>
+							<button class="octaveButton" onclick = "changeOctave(2)" >Octave 2<br>Min:65.41Hz<br>Max:123.47Hz</button>
+							<button class="octaveButton" onclick = "changeOctave(3)" >Octave 3<br>Min:130.81Hz<br>Max:246.94Hz</button>
+							<button class="octaveButton" onclick = "changeOctave(4)" >Octave 4<br>Min:261.63Hz<br>Max:493.88Hz</button>
+							<button class="octaveButton" onclick = "changeOctave(5)" >Octave 5<br>Min:523.25Hz<br>Max:987.77Hz</button>
+						</p>						
+						<p>
+							<button class="freqChangeButton" onmousedown = "beginAction(-grossTune)" onmouseup = "endAction()" ><<<<br>(Q)</button> 
+							<button class="freqChangeButton" onmousedown = "beginAction(-mediumTune)" onmouseup = "endAction()"><<<br>(W)</button> 
+							<button class="freqChangeButton" onmousedown = "beginAction(-fineTune)" onmouseup = "endAction()"><<br>(E)</button>
+							<button class="freqChangeButton" onmousedown = "beginAction(fineTune)" onmouseup = "endAction()">><br>(R)</button>  
+							<button class="freqChangeButton" onmousedown = "beginAction(mediumTune)" onmouseup = "endAction()">>><br>(T)</button> 		
+							<button class="freqChangeButton" onmousedown = "beginAction(grossTune)" onmouseup = "endAction()">>>><br>(Y)</button> 
+						</p>						
+						<p>
+							<button class="playButton" id="b2" onmousedown = "togglePlayback()" > 
+								<span id="playPause">&#9658;</span> 
+							</button> 
+						</p>
+					</td>
+					<td>
+						<h1>Frequency 2: <span id="frequency2">300.00</span>Hz</h1>					
+						<p>Set Note Frequency (Octave: <b><span id="octaveid2">3</span></b>) </p> 						
+						<p> 
+							<button class="noteButton" onclick = "noteFreq2((2**octave2)*16.35)" >C</button>
+							<button class="noteButton" onclick = "noteFreq2((2**octave2)*17.32)" >C#/Db</button>
+							<button class="noteButton" onclick = "noteFreq2((2**octave2)*18.35)" >D</button>
+							<button class="noteButton" onclick = "noteFreq2((2**octave2)*19.45)" >D#/Eb</button>
+							<button class="noteButton" onclick = "noteFreq2((2**octave2)*20.60)" >E</button>
+							<button class="noteButton" onclick = "noteFreq2((2**octave2)*21.83)" >F</button>
+							<button class="noteButton" onclick = "noteFreq2((2**octave2)*23.12)" >F#/Gb</button>
+							<button class="noteButton" onclick = "noteFreq2((2**octave2)*24.50)" >G</button>
+							<button class="noteButton" onclick = "noteFreq2((2**octave2)*25.96)" >G#/Ab</button>
+							<button class="noteButton" onclick = "noteFreq2((2**octave2)*27.50)" >A</button>
+							<button class="noteButton" onclick = "noteFreq2((2**octave2)*29.14)" >A#/Bb</button>
+							<button class="noteButton" onclick = "noteFreq2((2**octave2)*30.87)" >B</button>
+						</p>
+						<p>
+							<button class="octaveButton" onclick = "changeOctave2(0)" >Octave 0<br>Min:16.35Hz<br>Max:30.87Hz</button>
+							<button class="octaveButton" onclick = "changeOctave2(1)" >Octave 1<br>Min:32.70Hz<br>Max:61.74Hz</button>
+							<button class="octaveButton" onclick = "changeOctave2(2)" >Octave 2<br>Min:65.41Hz<br>Max:123.47Hz</button>
+							<button class="octaveButton" onclick = "changeOctave2(3)" >Octave 3<br>Min:130.81Hz<br>Max:246.94Hz</button>
+							<button class="octaveButton" onclick = "changeOctave2(4)" >Octave 4<br>Min:261.63Hz<br>Max:493.88Hz</button>
+							<button class="octaveButton" onclick = "changeOctave2(5)" >Octave 5<br>Min:523.25Hz<br>Max:987.77Hz</button>
+						</p>						
+						<p>
+							<button class="freqChangeButton" onmousedown = "beginAction2(-grossTune)" onmouseup = "endAction()" ><<<<br>(A)</button> 
+							<button class="freqChangeButton" onmousedown = "beginAction2(-mediumTune)" onmouseup = "endAction()"><<<br>(S)</button> 
+							<button class="freqChangeButton" onmousedown = "beginAction2(-fineTune)" onmouseup = "endAction()"><<br>(D)</button>
+							<button class="freqChangeButton" onmousedown = "beginAction2(fineTune)" onmouseup = "endAction()">><br>(F)</button>  
+							<button class="freqChangeButton" onmousedown = "beginAction2(mediumTune)" onmouseup = "endAction()">>><br>(G)</button> 		
+							<button class="freqChangeButton" onmousedown = "beginAction2(grossTune)" onmouseup = "endAction()">>>><br>(H)</button> 
+						</p>						
+						<p>
+							<button class="playButton" id="b2" onmousedown = "togglePlayback2()" > 
+								<span id="playPause2">&#9658;</span> 
+							</button> 
+						</p>
+					</td>
+				</tr>
+			</table>
+			<p>
+				<h2>Choose a Major Scale</h2>
+				<button class="noteButton" onclick = "MajScaleSet(1)" >C</button>
+				<button class="noteButton" onclick = "MajScaleSet(2)" >C#/Db</button>
+				<button class="noteButton" onclick = "MajScaleSet(3)" >D</button>
+				<button class="noteButton" onclick = "MajScaleSet(4)" >D#/Eb</button>
+				<button class="noteButton" onclick = "MajScaleSet(5)" >E</button>
+				<button class="noteButton" onclick = "MajScaleSet(6)" >F</button>
+				<button class="noteButton" onclick = "MajScaleSet(7)" >F#/Gb</button>
+				<button class="noteButton" onclick = "MajScaleSet(8)" >G</button>
+				<button class="noteButton" onclick = "MajScaleSet(9)" >G#/Ab</button>
+				<button class="noteButton" onclick = "MajScaleSet(10)" >A</button>
+				<button class="noteButton" onclick = "MajScaleSet(11)" >A#/Bb</button>
+				<button class="noteButton" onclick = "MajScaleSet(12)" >B</button>
+			</p>
+		<p>The <span id="majscaleid">C</span> major scale is: 
+			<br><span id="majscalefull">C(Tonic), D(2nd), E(3rd), F(4th), G(5th), A(6th), B(7th), C(Tonic)</span>
+		</p>	
+		<p>------<br></p>
+		<p>In the event that this app doesn't work correctly, close and reload using Google Chrome.</p>		
+    </div>
+    
+	
+	<script type="text/javascript">
+        var audioCtx = new (window.AudioContext || window.webkitAudioContext)(); // Audio Context
+		var audioCtx2 = new (window.AudioContext || window.webkitAudioContext)(); // Audio Context
+        var oscillatorNode = audioCtx.createOscillator(); // Creates Oscillator Node
+        var gainNode = audioCtx.createGain(); // Creates Gain Node
+		var oscillatorNode2 = audioCtx.createOscillator(); // Creates Oscillator Node
+        var gainNode2 = audioCtx.createGain(); // Creates Gain Node
+        var mute = true; // Muting Variable
+		var mute2 = true; // Muting Variable
+        var frequency = 200; // Sets First Frequency to 200
+		var frequency2 = 300; //Sets Second Frequenc to 150
+        var direction = ""; // Direction the User Tunes
+        var volume = 0.5; // Sets Volume At Default
+        var speed = 1; // Speed of Tune
+        var grossTune = 5; // Q/W Tuning
+        var mediumTune = 0.5; // E/R Tuning
+        var fineTune = 0.05; // T/Y Tuning
+		var frequencyid = ""
+		var df;
+		var octave = 3
+		var octave2 = 3
+        var keys = [
+            { key: 81, direction: "down", tune: grossTune, frequencyid: "1" },        // Q Key <<<
+            { key: 87, direction: "down", tune: mediumTune, frequencyid: "1" },       // W Key <<
+            { key: 69, direction: "down", tune: fineTune, frequencyid:"1" },         // E Key <
+            { key: 82, direction: "up", tune: fineTune, frequencyid: "1" },           // R Key >
+            { key: 84, direction: "up", tune: mediumTune, frequencyid: "1" },         // T Key >>
+            { key: 89, direction: "up", tune: grossTune, frequencyid: "1" },           // Y Key >>>
+			{ key: 65, direction: "down", tune: grossTune, frequencyid: "2" },        // A Key <<<
+            { key: 83, direction: "down", tune: mediumTune, frequencyid: "2" },       // S Key <<
+            { key: 68, direction: "down", tune: fineTune, frequencyid: "2" },         // D Key <
+            { key: 70, direction: "up", tune: fineTune, frequencyid: "2" },           // F Key >
+            { key: 71, direction: "up", tune: mediumTune, frequencyid: "2" },         // G Key >>
+            { key: 72, direction: "up", tune: grossTune, frequencyid: "2" }           // H Key >>>
+
+        ];
+		
+        oscillatorNode.connect(gainNode); // Connects Oscillator Node to Gain Node
+        gainNode.connect(audioCtx.destination) // Connects Gain Node To Browser
+        oscillatorNode.start(); // Starts Node
+        oscillatorNode.frequency.value = frequency;
+        gainNode.gain.value = 0; // Makes Gain Value 0 at Default
+		
+		oscillatorNode2.connect(gainNode2); // Connects Oscillator Node to Gain Node
+        gainNode2.connect(audioCtx.destination) // Connects Gain Node To Browser
+        oscillatorNode2.start(); // Starts Node
+        oscillatorNode2.frequency.value = frequency2;
+        gainNode2.gain.value = 0; // Makes Gain Value 0 at Default
+        
+		function MajScaleSet(Tonic){
+			if (Tonic == 1){			
+				document.getElementById("majscaleid").innerHTML = "C"
+				document.getElementById("majscalefull").innerHTML = "<b>C</b>(Tonic), D(2nd), E(3rd), F(4th), G(5th), A(6th), B(7th), C(Tonic)";
+			} else if (Tonic == 2){
+				document.getElementById("majscaleid").innerHTML = "C#/Db"
+				document.getElementById("majscalefull").innerHTML = "Db(Tonic), Eb(2nd), F(3rd), Gb(4th), Ab(5th), Bb(6th), C(7th), Db(Tonic)";
+			} else if (Tonic == 3){
+				document.getElementById("majscaleid").innerHTML = "D"
+				document.getElementById("majscalefull").innerHTML = "D(Tonic), E(2nd), F#(3rd), G(4th), A(5th), B(6th), C#(7th), D(Tonic)";
+			} else if (Tonic == 4){
+				document.getElementById("majscaleid").innerHTML = "D#/Eb"
+				document.getElementById("majscalefull").innerHTML = "Eb(Tonic), F(2nd), G(3rd), Ab(4th), Bb(5th), C(6th), D(7th), Eb(Tonic)";
+			} else if (Tonic == 5){
+				document.getElementById("majscaleid").innerHTML = "E"
+				document.getElementById("majscalefull").innerHTML = "E(Tonic), F#(2nd), G#(3rd), A(4th), B(5th), C#(6th), D#(7th), E(Tonic)";
+			} else if (Tonic == 6){
+				document.getElementById("majscaleid").innerHTML = "F"
+				document.getElementById("majscalefull").innerHTML = "F(Tonic), G(2nd), A(3rd), Bb(4th), CA(5th), D(6th), E(7th), FD(Tonic)";
+			} else if (Tonic == 7){
+				document.getElementById("majscaleid").innerHTML = "F#/Gb"
+				document.getElementById("majscalefull").innerHTML = "F#(Tonic), G#(2nd), A#(3rd), B(4th), C#(5th), D#(6th), F(7th), F#(Tonic)";
+			} else if (Tonic == 8){
+				document.getElementById("majscaleid").innerHTML = "G"
+				document.getElementById("majscalefull").innerHTML = "G(Tonic), A(2nd), B(3rd), C(4th), D(5th), E(6th), F#(7th), G(Tonic)";
+			} else if (Tonic == 9){
+				document.getElementById("majscaleid").innerHTML = "G#/Ab"
+				document.getElementById("majscalefull").innerHTML = "Ab(Tonic), Bb(2nd), C(3rd), Db(4th), Eb(5th), F(6th), G(7th), Ab(Tonic)";
+			} else if (Tonic == 10){
+				document.getElementById("majscaleid").innerHTML = "A"
+				document.getElementById("majscalefull").innerHTML = "A(Tonic), B(2nd), C#(3rd), D(4th), E(5th), F#(6th), G#(7th), A(Tonic)";
+			} else if (Tonic == 11){
+				document.getElementById("majscaleid").innerHTML = "A#/Bb"
+				document.getElementById("majscalefull").innerHTML = "Bb(Tonic), C(2nd), D#(3rd), Eb(4th), F(5th), G(6th), A(7th), Bb(Tonic)";
+			} else if (Tonic == 12){
+				document.getElementById("majscaleid").innerHTML = "B"
+				document.getElementById("majscalefull").innerHTML = "B(Tonic), C#(2nd), D#(3rd), E(4th), F#(5th), G#B(6th), A#(7th), B(Tonic)";
+			}
+		}
+		
+		function dFreq(amount){
+			frequency += amount;
+			if (frequency < 0){
+				frequency = 0;
+			}
+		}
+		
+		function dFreq2(amount){
+			frequency2 += amount;			
+			if (frequency2 < 0){
+				frequency2 = 0;
+			}
+		}
+		
+		function beginAction(amount){
+		    df = amount;
+			dFreq(amount);
+			action_timeout = setInterval("dFreq(df)",100);
+		}
+
+		function beginAction2(amount){
+		    df = amount;
+			dFreq2(amount);
+			action_timeout = setInterval("dFreq2(df)",100);
+		}
+		
+		function changeOctave(octaveNumber){
+			var prevOctave = octave ;
+			octave = octaveNumber;
+			var octavechange = octave - prevOctave;
+			var newfrequency = frequency*(2**octavechange);
+			document.getElementById("octaveid").innerHTML = octave;
+			
+			if (octave == 0 && newfrequency<16.35) {
+				frequency = 16.35;
+			} else if (octave == 0 && newfrequency>30.87) {
+				frequency = 30.87;
+			} else if (octave == 1 && newfrequency<32.70) {
+				frequency = 32.70;
+			} else if (octave == 1 && newfrequency>61.74) {
+				frequency = 61.74;	
+			} else if (octave == 2 && newfrequency<65.41) {
+				frequency = 65.41;			
+			} else if (octave == 2 && newfrequency>123.47) {
+				frequency = 123.47;
+			} else if (octave == 3 && newfrequency<130.81) {
+				frequency = 130.81;
+			} else if (octave == 3 && newfrequency>246.94) {
+				frequency = 246.94;
+			} else if (octave == 4 && newfrequency<261.63) {
+				frequency = 261.63;
+			} else if (octave == 4 && newfrequency>493.88) {
+				frequency = 493.88;
+			} else if (octave == 5 && newfrequency<523.25) {
+				frequency = 523.25;
+			} else if (octave == 5 && newfrequency>987.77) {
+				frequency = 987.77;				
+			} else {
+				frequency = newfrequency;	
+			}
+		}
+		
+		function changeOctave2(octaveNumber){
+			var prevOctave = octave2 ;
+			octave2 = octaveNumber;
+			var octavechange = octave2 - prevOctave;
+			var newfrequency = frequency2*(2**octavechange);
+			document.getElementById("octaveid2").innerHTML = octave2;
+			
+			if (octave2 == 0 && newfrequency<16.35) {
+				frequency2 = 16.35;
+			} else if (octave2 == 0 && newfrequency>30.87) {
+				frequency2 = 30.87;
+			} else if (octave2 == 1 && newfrequency<32.70) {
+				frequency2 = 32.70;
+			} else if (octave2 == 1 && newfrequency>61.74) {
+				frequency2 = 61.74;	
+			} else if (octave2 == 2 && newfrequency<65.41) {
+				frequency2 = 65.41;			
+			} else if (octave2 == 2 && newfrequency>123.47) {
+				frequency2 = 123.47;
+			} else if (octave2 == 3 && newfrequency<130.81) {
+				frequency2 = 130.81;
+			} else if (octave2 == 3 && newfrequency>246.94) {
+				frequency2 = 246.94;
+			} else if (octave2 == 4 && newfrequency<261.63) {
+				frequency2 = 261.63;
+			} else if (octave2 == 4 && newfrequency>493.88) {
+				frequency2 = 493.88;
+			} else if (octave2 == 5 && newfrequency<523.25) {
+				frequency2 = 523.25;
+			} else if (octave2 == 5 && newfrequency>987.77) {
+				frequency2 = 987.77;					
+			} else {
+				frequency2 = newfrequency;	
+			}
+		}
+		
+
+		function noteFreq(freq){
+			frequency = freq;
+			if (frequency < 0){
+				frequency = 0;
+			}
+		}
+		
+		function noteFreq2(freq){
+			frequency2 = freq;
+			if (frequency2 < 0){
+				frequency2 = 0;
+			}
+		}		
+		
+		function endAction(){
+			if (typeof(action_timeout) != "undefined") clearTimeout(action_timeout);
+		}
+
+		function togglePlayback(){
+			if (mute) {            
+				gainNode.gain.value = volume;   // Sets Volume Variable to Actual Volume
+				mute = false;                   // Turns Mute to False, so if space bar is pressed again, it will be true, due to if statement 
+				document.getElementById("playPause").innerHTML = "&#10074;&#10074;"; // 				^
+			} else {                            //                                          |
+				gainNode.gain.value = 0;        // Sets Volume Variable to 0, Muting        |
+				mute = true;                    // What this line said: --------------------+
+				document.getElementById("playPause").innerHTML = "&#9658"; // 
+			}
+		}
+		
+		function togglePlayback2(){
+			
+			if (mute2) {            
+				gainNode2.gain.value = volume;   // Sets Volume Variable to Actual Volume
+				mute2 = false;                   // Turns Mute to False, so if space bar is pressed again, it will be true, due to if statement 
+				document.getElementById("playPause2").innerHTML = "&#10074;&#10074;"; // 				^
+			} else {                            //                                          |
+				gainNode2.gain.value = 0;        // Sets Volume Variable to 0, Muting        |
+				mute2 = true;                    // What this line said: --------------------+
+				document.getElementById("playPause2").innerHTML = "&#9658"; // 
+			}
+		}
+
+		
+		
+		(function manualLoop() { // Declares manualLoop Function
+            setTimeout(function() { // After 40 Milliseconds, do this \/
+                manualLoop(); 
+                if (direction == "up" && frequencyid == "1"){ // If a Key is Pressed and the Direction is Up and relates to frequency 1, then
+                    frequency += speed; // the Speed is added to the Frequency.
+                }
+                if (direction == "up" && frequencyid == "2"){ // If a Key is Pressed and the Direction is Up and relates to frequency 2, then
+                    frequency2 += speed; // the Speed is added to the Frequency. 
+                }				
+                if (direction == "down" && frequencyid == "1"){ // If a Key is Pressed and the Direction is Down and relates to frequency 1, then
+                    frequency -= speed; // the Speed is subtracted from the Frequency. 
+				}
+                if (direction == "down" && frequencyid == "2"){ // If a Key is Pressed and the Direction is Down and relates to frequency 1, then
+                    frequency2 -= speed; // the Speed is subtracted from the Frequency. 					
+                }
+				if (frequency < 0){
+					frequency = 0;}
+				if (frequency2 < 0){
+					frequency2 = 0;}
+                oscillatorNode.frequency.value = frequency; // Actual Frequency to Frequency Variable.
+                oscillatorNode2.frequency.value = frequency2; // Actual Frequency to Frequency Variable.				
+                document.getElementById('frequency').innerHTML = frequency.toFixed(2); // Shows Frequency on Web Page. 
+				document.getElementById('frequency2').innerHTML = frequency2.toFixed(2); // Shows Frequency on Web Page. 
+            }, 40);
+        }());
+        document.addEventListener('keydown', function(event) { // Key Presses
+            for (var i = keys.length - 1; i >= 0; i--) {
+                if(event.keyCode == keys[i].key) { // Gets Key Code and Applies to "keys" index
+                    direction = keys[i].direction; // Sends Tuning in Direction of Key Pressed
+                    speed = keys[i].tune; // Sets Tuning Speed
+					frequencyid = keys[i].frequencyid; // Sets frequency id
+                } 
+            }
+			/*if(document.getElementById("b1").mousedown() && frequencyid == 1){
+				changeFreq(grossTune);
+			}
+			if(document.getElementById("b2").mousedown() && frequencyid == 2){
+				changeFreq2(grossTune);
+			}*/
+        });
+        document.addEventListener('keyup', function(event) {
+            direction = ""; // Sets Direction to Nothing Again
+        });		
+    </script>
+	
+</body>
