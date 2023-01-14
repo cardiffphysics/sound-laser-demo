@@ -18,7 +18,7 @@ The demo is based on a video made by Science Communicator Steve Mould. The setup
 2.	Stretch latex sheet over top of bowl and secure with rubber bands if necessary. Due to the shape of balloons, this is often not necessary. Care should be made to ensure that the sheet is stretched relatively uniformly across the surface.
 3.	Attach the mirror using double sided tape to the surface of balloon. Make sure to attach the mirror in an off-centre position. Placing in the centre will result in straight line patterns (less interesting!)
 4.	Fix laser to retort stand and position laser/bowl such that the laser beam reflects off the mirror and onto a wall ~2/3 metres away.
-5.	Open GUI (found in ZIP file) and use to play sounds.
+5.	Open GUI.html in your browser and use to play sounds.
 
 ### Things to try
  * Start by playing only 1 tone through the speaker. Sweep through frequencies to find one which produces a clear pattern (e.g. Oval or figure-of-8 pattern).
