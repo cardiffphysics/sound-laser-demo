@@ -4,6 +4,8 @@ This demo is designed allow observers to visualise the effect of interfering sou
 
 The demo is based on a video made by Science Communicator Steve Mould. The setup that he uses is almost identical with the exception of the GUI and so can be used as a good reference for new demonstrators. His video can be found here: https://www.youtube.com/watch?v=C-V1uXeyGmg
 
+A video of the results of this setup is available at https://youtube.com/shorts/FPK7bNw6cjA?feature=share
+
 ### Itinerary
  * 1x Class 2 Laser Pointer
  * 1x Retort Stand
